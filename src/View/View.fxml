@@ -1,8 +1,13 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<GridPane fx:controller="View.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="409.0" prefWidth="621.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller">
+   <children>
+      <Button fx:id="btn_create" layoutX="75.0" layoutY="86.0" mnemonicParsing="false" onAction="#create" prefHeight="63.0" prefWidth="158.0" text="Create User" />
+      <Button layoutX="409.0" layoutY="260.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="158.0" text="Delete User" />
+      <Button layoutX="75.0" layoutY="260.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="158.0" text="Update Details" />
+      <Button layoutX="409.0" layoutY="86.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="158.0" text="Read" />
+   </children>
+</Pane>
