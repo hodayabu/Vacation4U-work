@@ -13,7 +13,7 @@ public class Main extends Application {
 
         Model model=new Model();
         FXMLLoader fxm=new FXMLLoader();
-        Parent root = FXMLLoader.load(getClass().getResource("View.fxml"));
+        Parent root = fxm.load(getClass().getResource("View.fxml").openStream());
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 700, 700));
         Controller controler=fxm.getController();
