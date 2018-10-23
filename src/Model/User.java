@@ -16,7 +16,8 @@ public class User {
         City = city;
         Password = password;
         DateOfBirth = dateOfBirth;
-    }
+
+    }//constractor
 
     public void setUserName(String userName) {
         UserName = userName;
