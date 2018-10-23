@@ -13,7 +13,9 @@ public class create extends Acontroler {
     public javafx.scene.control.TextField BDay;
 
 
-    public void Insert(ActionEvent actionEvent) {
+    public void Insert() {
+        System.out.println(u_name.getText());
+        model.toString();
         model.Insert(u_name.getText(), password.getText(), BDay.getText(), f_name.getText(), l_name.getText(), city.getText());
     }
 }

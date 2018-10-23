@@ -6,6 +6,9 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.util.Observable;
+import java.util.Observer;
+
 public class Controller extends Acontroler {
     public javafx.scene.control.Button btn_create;
 
@@ -24,5 +27,8 @@ public class Controller extends Acontroler {
 
         }
         }
-    }
+
+
+
+}
 
