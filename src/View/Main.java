@@ -12,11 +12,13 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         Model model=new Model();
-        Controller controler=new Controller();
-        controler.setModel(model);
+        FXMLLoader fxm=new FXMLLoader();
         Parent root = FXMLLoader.load(getClass().getResource("View.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 700, 700));
+        Controller controler=fxm.getController();
+        controler.setModel(model);
+
 
         primaryStage.show();
 
