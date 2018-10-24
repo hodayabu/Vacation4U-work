@@ -46,19 +46,25 @@ public class Model {
             }
         }
 
-    public boolean exist(String user) {
-        String sql = "SELECT user_name FROM users where user_name='user'";
+    public boolean exist(String userr) {
+
+        String sql = "SELECT user_name FROM users where user_name=\""+userr+"\"" ;
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
+            if(rs.getString("user_name").equals(userr)){
+                return true;
+            }
 
-            // loop through the result set
-                System.out.println(rs.getString("user_name") );
-
+                //stmt.close();
+                //conn.close();
+                //rs.close();
+                //conn.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return true;
+
+        return false;
     }
 
     }
