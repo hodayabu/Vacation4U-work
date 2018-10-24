@@ -31,6 +31,61 @@ public class Controller extends Acontroler {
         }
 
 
+    public void read()
+    {
+        try{
+            Stage stage=new Stage();
+            stage.setTitle("search a user");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root = fxmlLoader.load(getClass().getResource("read.fxml").openStream());
+            Scene scene = new Scene(root, 800, 500);
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
+            stage.show();
+
+
+        } catch (Exception e) {
+
+        }
+    }
+
+
+    public void delete()
+    {
+        try{
+            Stage stage=new Stage();
+            stage.setTitle("delete a user");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root = fxmlLoader.load(getClass().getResource("delete.fxml").openStream());
+            Scene scene = new Scene(root, 800, 500);
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
+            stage.show();
+
+
+        } catch (Exception e) {
+
+        }
+    }
+
+    public void update()
+    {
+        try{
+            Stage stage=new Stage();
+            stage.setTitle("update a user");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root = fxmlLoader.load(getClass().getResource("update.fxml").openStream());
+            Scene scene = new Scene(root, 800, 500);
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
+            stage.show();
+
+
+        } catch (Exception e) {
+
+        }
+    }
+
 
 }
 

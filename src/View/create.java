@@ -34,10 +34,5 @@ public class create extends Acontroler {
 
 
 
-    private void showAlert(String alertMessage) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText(alertMessage);
-        alert.show();
 
-    }
 }
