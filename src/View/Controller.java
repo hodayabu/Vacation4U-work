@@ -23,6 +23,8 @@ public class Controller extends Acontroler {
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
             stage.show();
+
+
         } catch (Exception e) {
 
         }
