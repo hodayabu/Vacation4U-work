@@ -15,7 +15,7 @@
                <font>
                   <Font size="44.0" />
                </font></Button>
-            <Button fx:id="btn_create1" layoutX="429.0" layoutY="102.0" mnemonicParsing="false" onAction="#create" prefHeight="140.0" prefWidth="216.0" text="delete user ">
+            <Button fx:id="btn_delete" layoutX="429.0" layoutY="102.0" mnemonicParsing="false" onAction="#create" prefHeight="140.0" prefWidth="216.0" text="delete user ">
                <font>
                   <Font size="46.0" />
                </font>
