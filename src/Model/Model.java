@@ -2,10 +2,7 @@ package Model;
 
 import View.Controller;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Observable;
 
 public class Model {
@@ -49,5 +46,21 @@ public class Model {
             }
         }
 
-}
+    public boolean exist(String user) {
+        String sql = "SELECT user_name FROM users where user_name='user'";
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+
+            // loop through the result set
+                System.out.println(rs.getString("user_name") );
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return true;
+    }
+
+    }
+
 

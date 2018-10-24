@@ -15,17 +15,17 @@
                <font>
                   <Font size="44.0" />
                </font></Button>
-            <Button fx:id="btn_delete" layoutX="429.0" layoutY="102.0" mnemonicParsing="false" onAction="#create" prefHeight="140.0" prefWidth="216.0" text="delete user ">
+            <Button fx:id="btn_delete" layoutX="429.0" layoutY="102.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="216.0" text="delete user ">
                <font>
                   <Font size="46.0" />
                </font>
             </Button>
-            <Button fx:id="btn_create2" layoutX="437.0" layoutY="322.0" mnemonicParsing="false" onAction="#create" prefHeight="140.0" prefWidth="216.0" text="search">
+            <Button fx:id="btn_search" layoutX="437.0" layoutY="322.0" mnemonicParsing="false" onAction="#create" prefHeight="140.0" prefWidth="216.0" text="search">
                <font>
                   <Font size="40.0" />
                </font>
             </Button>
-            <Button fx:id="btn_create21" layoutX="71.0" layoutY="322.0" mnemonicParsing="false" onAction="#create" prefHeight="140.0" prefWidth="216.0" text="update">
+            <Button fx:id="btn_update" layoutX="71.0" layoutY="322.0" mnemonicParsing="false" onAction="#create" prefHeight="140.0" prefWidth="216.0" text="update">
                <font>
                   <Font size="45.0" />
                </font>
