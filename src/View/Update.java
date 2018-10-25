@@ -11,7 +11,10 @@ public class Update extends Acontroler {
     public javafx.scene.control.TextField BDay;
 
     public void update() throws InterruptedException {
-        if (model.exist(curren_name.getText())) {
+        if(model.exist(new_name.getText()))
+            showAlert("your new user name is already exist,please choose another one ");
+
+        else if(model.exist(curren_name.getText())) {
             model.update(curren_name.getText(),new_name.getText(), password.getText(), BDay.getText(), f_name.getText(), l_name.getText(), city.getText());
             showAlert("update sucssesfully");
 

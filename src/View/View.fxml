@@ -9,23 +9,23 @@
 
 <GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Controller">
    <children>
-      <Pane prefHeight="514.0" prefWidth="776.0">
+      <Pane prefHeight="700.0" prefWidth="900.0">
          <children>
-            <Button fx:id="btn_create" layoutX="61.0" layoutY="102.0" mnemonicParsing="false" onAction="#create" prefHeight="140.0" prefWidth="216.0" text="create user ">
+            <Button fx:id="btn_create" layoutX="55.0" layoutY="243.0" mnemonicParsing="false" onAction="#create" prefHeight="57.0" prefWidth="329.0" text="create user ">
                <font>
                   <Font size="44.0" />
                </font></Button>
-            <Button fx:id="btn_delete" layoutX="429.0" layoutY="102.0" mnemonicParsing="false" onAction="#delete" prefHeight="140.0" prefWidth="216.0" text="delete user ">
+            <Button fx:id="btn_delete" layoutX="458.0" layoutY="240.0" mnemonicParsing="false" onAction="#delete" prefHeight="47.0" prefWidth="329.0" text="delete user ">
                <font>
                   <Font size="46.0" />
                </font>
             </Button>
-            <Button fx:id="btn_search" layoutX="437.0" layoutY="322.0" mnemonicParsing="false" onAction="#read" prefHeight="140.0" prefWidth="216.0" text="search">
+            <Button fx:id="btn_search" layoutX="458.0" layoutY="374.0" mnemonicParsing="false" onAction="#read" prefHeight="96.0" prefWidth="329.0" text="search">
                <font>
                   <Font size="40.0" />
                </font>
             </Button>
-            <Button fx:id="btn_update" layoutX="71.0" layoutY="322.0" mnemonicParsing="false" onAction="#update" prefHeight="140.0" prefWidth="216.0" text="update">
+            <Button fx:id="btn_update" layoutX="55.0" layoutY="374.0" mnemonicParsing="false" onAction="#update" prefHeight="96.0" prefWidth="329.0" text="update">
                <font>
                   <Font size="45.0" />
                </font>
