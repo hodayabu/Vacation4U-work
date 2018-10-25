@@ -107,15 +107,15 @@ public class Model {
 
 
     public void update(String currentuser, String newuser ,String pass, String birth, String first, String last, String city) {
-        String sql = "UPDATE users SET user_name = ?"
-                + "password = ? "
-                + "BDay = ?"+ "first_name = ? "+ "last_name = ? "+ "city = ?"+
-                " where user_name = ?";
+        String sql = "UPDATE users SET user_name = ?,"
+                + "password = ?, "
+                + "BDay = ?,"+ "first_name = ?, "+ "last_name = ?, "+ "city = ?"
+                +" WHERE user_name = ?";
 
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            //pstmt.setString(7, currentuser);
+            pstmt.setString(7, currentuser);
 
 
             // set the corresponding param
