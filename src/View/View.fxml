@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
@@ -11,21 +14,35 @@
    <children>
       <Pane prefHeight="700.0" prefWidth="900.0">
          <children>
-            <Button fx:id="btn_create" layoutX="55.0" layoutY="243.0" mnemonicParsing="false" onAction="#create" prefHeight="57.0" prefWidth="329.0" text="create user ">
+            <ImageView fitHeight="706.0" fitWidth="1063.0" opacity="0.38" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/sky.jpg" />
+               </image></ImageView>
+            <ImageView fitHeight="225.0" fitWidth="366.0" layoutX="322.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/1.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="167.0" layoutY="51.0" prefHeight="178.0" prefWidth="618.0" text="Welcome!">
+               <font>
+                  <Font name="System Bold" size="120.0" />
+               </font>
+            </Label>
+            <Button fx:id="btn_create" layoutX="29.0" layoutY="441.0" mnemonicParsing="false" onAction="#create" prefHeight="57.0" prefWidth="329.0" text="Create user ">
                <font>
                   <Font size="44.0" />
                </font></Button>
-            <Button fx:id="btn_delete" layoutX="458.0" layoutY="240.0" mnemonicParsing="false" onAction="#delete" prefHeight="47.0" prefWidth="329.0" text="delete user ">
+            <Button fx:id="btn_delete" layoutX="519.0" layoutY="439.0" mnemonicParsing="false" onAction="#delete" prefHeight="47.0" prefWidth="329.0" text="Delete user ">
                <font>
                   <Font size="46.0" />
                </font>
             </Button>
-            <Button fx:id="btn_search" layoutX="458.0" layoutY="374.0" mnemonicParsing="false" onAction="#read" prefHeight="96.0" prefWidth="329.0" text="search">
+            <Button fx:id="btn_search" layoutX="519.0" layoutY="556.0" mnemonicParsing="false" onAction="#read" prefHeight="96.0" prefWidth="329.0" text="Search user">
                <font>
-                  <Font size="40.0" />
+                  <Font size="46.0" />
                </font>
             </Button>
-            <Button fx:id="btn_update" layoutX="55.0" layoutY="374.0" mnemonicParsing="false" onAction="#update" prefHeight="96.0" prefWidth="329.0" text="update">
+            <Button fx:id="btn_update" layoutX="29.0" layoutY="558.0" mnemonicParsing="false" onAction="#update" prefHeight="96.0" prefWidth="329.0" text="Update user">
                <font>
                   <Font size="45.0" />
                </font>
