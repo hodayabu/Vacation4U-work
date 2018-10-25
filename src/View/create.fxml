@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="670.0" fitWidth="860.0" opacity="0.38" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../resources/sky.jpg" />
+            <Image url="/sky.jpg" />
          </image>
          <effect>
             <BoxBlur />
