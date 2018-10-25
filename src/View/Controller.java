@@ -75,7 +75,7 @@ public class Controller extends Acontroler {
             stage.setTitle("update a user");
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root = fxmlLoader.load(getClass().getResource("update.fxml").openStream());
-            Scene scene = new Scene(root, 800, 500);
+            Scene scene = new Scene(root, 500, 800);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
             stage.show();
