@@ -3,6 +3,8 @@ package Model;
 import View.Controller;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 public class Model {
@@ -52,7 +54,7 @@ public class Model {
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
-            if(rs.getString("user_name").equals(userr)){
+            if(rs.getString("user_name").equals(userr) && !(userr.equals("")) ){
                 return true;
             }
 
@@ -105,6 +107,50 @@ public class Model {
             }
         }
 
+        private List<String> help (String  currentuser,String newuser  ,String pass, String birth, String first, String last, String city)
+        {
+           List<String> ans=new ArrayList<>();
+
+            String sql = "SELECT * FROM users where user_name=\""+currentuser+"\"" ;
+            try (Connection conn = this.connect();
+                 Statement stmt  = conn.createStatement();
+                 ResultSet rs    = stmt.executeQuery(sql)){
+                 if(newuser.equals(""))
+                     ans.add(0,rs.getString("user_name"));
+                 else
+                     ans.add(newuser);
+                if(pass.equals(""))
+                    ans.add(1,rs.getString("password"));
+                else
+                    ans.add(pass);
+                if(birth.equals(""))
+                    ans.add(2,rs.getString("BDay"));
+                else
+                    ans.add(pass);
+                if(first.equals(""))
+                    ans.add(3,rs.getString("first_name"));
+                else
+                    ans.add(first);
+                if(last.equals(""))
+                    ans.add(4,rs.getString("last_name"));
+                else
+                    ans.add(last);
+                if(city.equals(""))
+                    ans.add(5,rs.getString("city"));
+                else
+                    ans.add(city);
+
+                //stmt.close();
+                //conn.close();
+                //rs.close();
+                //conn.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+            return ans;
+        }
+
+
 
     public void update(String currentuser, String newuser ,String pass, String birth, String first, String last, String city) {
 
@@ -124,6 +170,7 @@ public class Model {
 
 
             // set the corresponding param
+            /*
             if((!newuser.equals("")))
                 pstmt.setString(1, newuser);
             if((!pass.equals("")))
@@ -136,7 +183,19 @@ public class Model {
                 pstmt.setString(5, last);
             if((!city.equals("")))
                 pstmt.setString(6, city);
+            */
             // update
+           List<String> ans= help(currentuser,newuser  ,pass, birth, first, last, city);
+            pstmt.setString(1,ans.get(0));
+            pstmt.setString(2,ans.get(1));
+            pstmt.setString(3,ans.get(2));
+            pstmt.setString(4,ans.get(3));
+            pstmt.setString(5,ans.get(4));
+            pstmt.setString(6,ans.get(5));
+
+
+
+
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

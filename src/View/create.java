@@ -20,12 +20,16 @@ public class create extends Acontroler {
 
 
     public void Insert() throws InterruptedException {
-        if (!(model.exist(u_name.getText()))) {
+        if(u_name.getText().equals("") || f_name.getText().equals("") || l_name.getText().equals("") || password.getText().equals("") ||city.getText().equals("") || BDay.getText().equals("") )
+             showAlert("you must fill all the fields");
+
+        else if ((model.exist(u_name.getText())))
+            showAlert("this user name is already exist, please choose another one");
+
+         else {
             model.Insert(u_name.getText(), password.getText(), BDay.getText(), f_name.getText(), l_name.getText(), city.getText());
             showAlert("you have sign in sucssesfully");
-
-        } else
-            showAlert("this user name is already exist, please choose another one");
+        }
 
 
 

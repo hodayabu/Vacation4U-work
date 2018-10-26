@@ -18,7 +18,8 @@ public class Update extends Acontroler {
             model.update(curren_name.getText(),new_name.getText(), password.getText(), BDay.getText(), f_name.getText(), l_name.getText(), city.getText());
             showAlert("update sucssesfully");
 
-        } else
+        }
+        else
             showAlert("this user name isn't exist");
 
 
