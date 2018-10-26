@@ -14,37 +14,42 @@
    <children>
       <Pane prefHeight="600.0" prefWidth="800.0">
          <children>
-            <ImageView fitHeight="990.0" fitWidth="864.0" layoutX="5.0" layoutY="-3.0" opacity="0.38" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="990.0" fitWidth="864.0" layoutX="-3.0" layoutY="-3.0" opacity="0.38" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="/beach_1.jpg" />
                </image></ImageView>
-            <ImageView fitHeight="156.0" fitWidth="198.0" layoutX="-18.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="156.0" fitWidth="198.0" layoutX="2.0" layoutY="442.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="/v.png" />
                </image>
             </ImageView>
-            <Label layoutX="135.0" layoutY="55.0" prefHeight="178.0" prefWidth="618.0" text="Welcome!" textFill="#648ac2">
+            <Label layoutX="100.0" layoutY="47.0" prefHeight="178.0" prefWidth="618.0" text="Welcome!" textFill="#648ac2">
                <font>
-                  <Font name="System Bold" size="120.0" />
+                  <Font name="Comic Sans MS Bold Italic" size="130.0" />
                </font>
             </Label>
-            <Button fx:id="btn_create" layoutX="39.0" layoutY="268.0" mnemonicParsing="false" onAction="#create" prefHeight="65.0" prefWidth="222.0" text="Create user ">
+            <Button layoutX="258.0" layoutY="492.0" mnemonicParsing="false" onAction="#help" prefHeight="65.0" prefWidth="300.0" text="Need some help?">
                <font>
-                  <Font size="30.0" />
+                  <Font name="Comic Sans MS Bold Italic" size="30.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_create" layoutX="39.0" layoutY="268.0" mnemonicParsing="false" onAction="#create" prefHeight="65.0" prefWidth="230.0" text="Create user ">
+               <font>
+                  <Font name="Comic Sans MS Bold Italic" size="30.0" />
                </font></Button>
             <Button fx:id="btn_delete" layoutX="544.0" layoutY="268.0" mnemonicParsing="false" onAction="#delete" prefHeight="65.0" prefWidth="222.0" text="Delete user ">
                <font>
-                  <Font size="30.0" />
+                  <Font name="Comic Sans MS Bold Italic" size="30.0" />
                </font>
             </Button>
             <Button fx:id="btn_search" layoutX="544.0" layoutY="371.0" mnemonicParsing="false" onAction="#read" prefHeight="65.0" prefWidth="222.0" text="Search user">
                <font>
-                  <Font size="30.0" />
+                  <Font name="Comic Sans MS Bold Italic" size="30.0" />
                </font>
             </Button>
-            <Button fx:id="btn_update" layoutX="39.0" layoutY="371.0" mnemonicParsing="false" onAction="#update" prefHeight="65.0" prefWidth="222.0" text="Update user">
+            <Button fx:id="btn_update" layoutX="39.0" layoutY="371.0" mnemonicParsing="false" onAction="#update" prefHeight="65.0" prefWidth="230.0" text="Update user">
                <font>
-                  <Font size="30.0" />
+                  <Font name="Comic Sans MS Bold Italic" size="30.0" />
                </font>
             </Button>
          </children>

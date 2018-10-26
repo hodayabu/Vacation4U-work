@@ -19,7 +19,7 @@ public class Controller extends Acontroler {
             stage.setTitle("Create new user");
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root = fxmlLoader.load(getClass().getResource("create.fxml").openStream());
-            Scene scene = new Scene(root, 800, 500);
+            Scene scene = new Scene(root, 800, 600);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
             stage.show();
@@ -31,6 +31,13 @@ public class Controller extends Acontroler {
         }
 
 
+    public void help(){
+        showAlert("\t Vacation 4 U is the App for you! \n \t Here you can sell and buy flight ticket with no effort! \n \t Start now and craete your user!");
+
+
+    }
+
+
     public void read()
     {
         try{
@@ -38,7 +45,7 @@ public class Controller extends Acontroler {
             stage.setTitle("search a user");
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root = fxmlLoader.load(getClass().getResource("read.fxml").openStream());
-            Scene scene = new Scene(root, 800, 500);
+            Scene scene = new Scene(root, 550, 450);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
             stage.show();
@@ -57,7 +64,7 @@ public class Controller extends Acontroler {
             stage.setTitle("delete a user");
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root = fxmlLoader.load(getClass().getResource("delete.fxml").openStream());
-            Scene scene = new Scene(root, 800, 500);
+            Scene scene = new Scene(root, 550, 450);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
             stage.show();
@@ -75,7 +82,7 @@ public class Controller extends Acontroler {
             stage.setTitle("update a user");
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root = fxmlLoader.load(getClass().getResource("update.fxml").openStream());
-            Scene scene = new Scene(root, 700, 600);
+            Scene scene = new Scene(root, 750, 550);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
             stage.show();
