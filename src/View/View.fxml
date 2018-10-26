@@ -18,28 +18,33 @@
                <image>
                   <Image url="/beach_1.jpg" />
                </image></ImageView>
+            <ImageView fitHeight="156.0" fitWidth="198.0" layoutX="-18.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/v.png" />
+               </image>
+            </ImageView>
             <Label layoutX="135.0" layoutY="55.0" prefHeight="178.0" prefWidth="618.0" text="Welcome!" textFill="#648ac2">
                <font>
                   <Font name="System Bold" size="120.0" />
                </font>
             </Label>
-            <Button fx:id="btn_create" layoutX="29.0" layoutY="278.0" mnemonicParsing="false" onAction="#create" prefHeight="57.0" prefWidth="329.0" text="Create user ">
+            <Button fx:id="btn_create" layoutX="39.0" layoutY="268.0" mnemonicParsing="false" onAction="#create" prefHeight="65.0" prefWidth="222.0" text="Create user ">
                <font>
-                  <Font size="44.0" />
+                  <Font size="30.0" />
                </font></Button>
-            <Button fx:id="btn_delete" layoutX="456.0" layoutY="278.0" mnemonicParsing="false" onAction="#delete" prefHeight="47.0" prefWidth="329.0" text="Delete user ">
+            <Button fx:id="btn_delete" layoutX="544.0" layoutY="268.0" mnemonicParsing="false" onAction="#delete" prefHeight="65.0" prefWidth="222.0" text="Delete user ">
                <font>
-                  <Font size="46.0" />
+                  <Font size="30.0" />
                </font>
             </Button>
-            <Button fx:id="btn_search" layoutX="456.0" layoutY="440.0" mnemonicParsing="false" onAction="#read" prefHeight="96.0" prefWidth="329.0" text="Search user">
+            <Button fx:id="btn_search" layoutX="544.0" layoutY="371.0" mnemonicParsing="false" onAction="#read" prefHeight="65.0" prefWidth="222.0" text="Search user">
                <font>
-                  <Font size="46.0" />
+                  <Font size="30.0" />
                </font>
             </Button>
-            <Button fx:id="btn_update" layoutX="29.0" layoutY="442.0" mnemonicParsing="false" onAction="#update" prefHeight="96.0" prefWidth="329.0" text="Update user">
+            <Button fx:id="btn_update" layoutX="39.0" layoutY="371.0" mnemonicParsing="false" onAction="#update" prefHeight="65.0" prefWidth="222.0" text="Update user">
                <font>
-                  <Font size="45.0" />
+                  <Font size="30.0" />
                </font>
             </Button>
          </children>

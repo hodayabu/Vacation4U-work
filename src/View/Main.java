@@ -14,7 +14,7 @@ public class Main extends Application {
         Model model=new Model();
         FXMLLoader fxm=new FXMLLoader();
         Parent root = fxm.load(getClass().getResource("View.fxml").openStream());
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Vacation 4 U");
         primaryStage.setScene(new Scene(root, 800, 600));
         Controller controler=fxm.getController();
         controler.setModel(model);
@@ -25,8 +25,6 @@ public class Main extends Application {
 
     }
 
-/////////////////////////////////////////////////////////////////////////////////////////////
-    //hodaya
     public static void main(String[] args) {
         launch(args);
     }
