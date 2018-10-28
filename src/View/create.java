@@ -1,15 +1,8 @@
 package View;
 
-import Model.Model;
-import javafx.event.ActionEvent;
-import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-
-import java.awt.*;
-
 import static java.lang.Thread.sleep;
 
-public class create extends Acontroler {
+public class create extends Acontrol {
     public javafx.scene.control.Button btn_ImDone;
     public javafx.scene.control.TextField f_name;
     public javafx.scene.control.TextField l_name;
@@ -23,11 +16,11 @@ public class create extends Acontroler {
         if(u_name.getText().equals("") || f_name.getText().equals("") || l_name.getText().equals("") || password.getText().equals("") ||city.getText().equals("") || BDay.getText().equals("") )
              showAlert("you must fill all the fields");
 
-        else if ((model.exist(u_name.getText())))
+        else if ((conection_layer.exist(u_name.getText())))
             showAlert("this user name is already exist, please choose another one");
 
          else {
-            model.Insert(u_name.getText(), password.getText(), BDay.getText(), f_name.getText(), l_name.getText(), city.getText());
+            conection_layer.Insert(u_name.getText(), password.getText(), BDay.getText(), f_name.getText(), l_name.getText(), city.getText());
             showAlert("you have sign in sucssesfully");
         }
 

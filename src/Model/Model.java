@@ -1,11 +1,8 @@
 package Model;
 
-import View.Controller;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
 public class Model {
 

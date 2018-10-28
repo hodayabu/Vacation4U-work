@@ -1,13 +1,16 @@
 package View;
 
+import Controller.Controller;
 import Model.Model;
 import javafx.scene.control.Alert;
 
-public  abstract class Acontroler {
-   protected static Model model;
+public  abstract class Acontrol {
 
-    public void setModel(Model model) {
-        this.model = model;
+
+   protected static Controller conection_layer;
+
+    public void setController(Controller conection_layer) {
+        this.conection_layer = conection_layer;
     }
 
     public void showAlert(String alertMessage) {

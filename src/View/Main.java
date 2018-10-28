@@ -1,5 +1,6 @@
 package View;
 
+import Controller.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,12 +13,14 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         Model model=new Model();
+        Controller controller=new Controller();
+        controller.setModel(model);
         FXMLLoader fxm=new FXMLLoader();
         Parent root = fxm.load(getClass().getResource("View.fxml").openStream());
         primaryStage.setTitle("Vacation 4 U");
         primaryStage.setScene(new Scene(root, 800, 600));
-        Controller controler=fxm.getController();
-        controler.setModel(model);
+        View Main_control=fxm.getController();
+        Main_control.setController(controller);
 
 
         primaryStage.show();
