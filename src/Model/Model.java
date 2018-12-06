@@ -26,7 +26,7 @@ public class Model {
 
     }
 
-
+ 
     public void Insert(String user, String pass, String birth, String first, String last, String city) {
 
             String sql = "INSERT INTO users (user_name,password,BDay,first_name,last_name, city) VALUES(?,?,?,?,?,?)";
