@@ -20,8 +20,6 @@ public class Model {
 
 
 
-//////////////////////////////////////////////////////////////////
-
 
 
     }
@@ -198,6 +196,96 @@ public class Model {
             System.out.println(e.getMessage());
         }
     }
+
+    public boolean logIn (String userName,String password){
+        //make sure the password is correct
+        String sql = "SELECT password FROM users where user_name=\""+userName+"\"" ;
+
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            if(!rs.getString("password").equals(password)){
+                return false;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        //write the user at log in users
+            String s = "INSERT INTO logInTable (username) VALUES(?)";
+            try (Connection conn = this.connect();
+                 PreparedStatement pstmt = conn.prepareStatement(s)) {
+                pstmt.setString(1, userName);
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+
+        return true;
+
+    }
+
+    public String checkMySellarInbox(String userName){
+
+        //check if the user have vacation he need to approve-----if he published vacation to sell
+        String sql = "SELECT sellarUser FROM waitForSellar where sellarUser=\""+userName+"\"" ;
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            if(rs.getString("sellarUser").equals(userName) ){
+
+                //there is vacation wait for the seller approve--we take the details from the table and inform the seller at his inbox
+                String vecationFromWaiting = "SELECT vecaionId FROM waitForSellar where sellarUser=\""+userName+"\"" ;
+                Statement stmt1  = conn.createStatement();
+                ResultSet rs1    = stmt1.executeQuery(vecationFromWaiting);
+                String vacationWait=rs1.getString("vecaionId");
+
+                //details on the buyer
+                String buyer = "SELECT buyerUser FROM waitForSellar where sellarUser=\""+userName+"\"" ;
+                Statement stm  = conn.createStatement();
+                ResultSet ans    = stm.executeQuery(buyer);
+                String buyerUser=ans.getString("buyerUser");
+
+                //take the details on the vacation
+                String destenation = "SELECT destenation FROM vacationsForSale where vacation_id=\""+vacationWait+"\"" ;
+                Statement stmt2  = conn.createStatement();
+                ResultSet deste    = stmt2.executeQuery(destenation);
+                String dest=deste.getString("destenation");
+
+
+                String airPortCampany = "SELECT airPortCampany FROM vacationsForSale where vacation_id=\""+vacationWait+"\"" ;
+                Statement stmt3  = conn.createStatement();
+                ResultSet airP    = stmt3.executeQuery(airPortCampany);
+                String airPort=airP.getString("airPortCampany");
+
+
+                String dates = "SELECT dateOfVecation FROM vacationsForSale where vacation_id=\""+vacationWait+"\"" ;
+                Statement stmt4  = conn.createStatement();
+                ResultSet datese    = stmt4.executeQuery(dates);
+                String date=datese.getString("dateOfVecation");
+
+
+//                String lugg = "SELECT luggage FROM vacationsForSale where vecation_id=\""+vacationWait+"\"" ;
+//                Statement stmt5  = conn.createStatement();
+//                ResultSet luggege    = stmt5.executeQuery(lugg);
+
+                String numOfTickets = "SELECT numOfTickets FROM vacationsForSale where vacation_id=\""+vacationWait+"\"" ;
+                Statement stmt6  = conn.createStatement();
+                ResultSet numOftik    = stmt6.executeQuery(numOfTickets);
+                String numOftick=numOftik.getString("numOfTickets");
+
+
+                return "Hello!\n"+buyerUser+" is interesting in your "+numOftick+"tickets to "+dest+" on the dates: "+date+" from the "+airPort+" air port \nPleas approve or disapprove his request:";
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return "";
+    }
+
+
 }
 
 
