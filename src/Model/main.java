@@ -3,9 +3,11 @@ package Model;
 public class main {
     public static void main(String[] args) {
         Model model=new Model();
-        //boolean ans=model.logIn("hodaya","1234");
-        String ans=model.checkMySellarInbox("hodaya");
-        System.out.println(ans);
+       // boolean an=model.logIn("hodaya","1234");
+        //String ans=model.checkMySellarInbox("hodaya");
+       // model.notApproveRequest("hodaya");
+        System.out.println(model.checkMyBuyerInbox("gil"));
+        //System.out.println(ans);
     }
 
 }

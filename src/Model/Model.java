@@ -145,8 +145,6 @@ public class Model {
             return ans;
         }
 
-
-
     public void update(String currentuser, String newuser ,String pass, String birth, String first, String last, String city) {
 
 
@@ -235,11 +233,12 @@ public class Model {
              ResultSet rs    = stmt.executeQuery(sql)){
             if(rs.getString("sellarUser").equals(userName) ){
 
+
                 //there is vacation wait for the seller approve--we take the details from the table and inform the seller at his inbox
-                String vecationFromWaiting = "SELECT vecaionId FROM waitForSellar where sellarUser=\""+userName+"\"" ;
+                String vecationFromWaiting = "SELECT vacationId FROM waitForSellar where sellarUser=\""+userName+"\"" ;
                 Statement stmt1  = conn.createStatement();
                 ResultSet rs1    = stmt1.executeQuery(vecationFromWaiting);
-                String vacationWait=rs1.getString("vecaionId");
+                String vacationWait=rs1.getString("vacationId");
 
                 //details on the buyer
                 String buyer = "SELECT buyerUser FROM waitForSellar where sellarUser=\""+userName+"\"" ;
@@ -248,19 +247,19 @@ public class Model {
                 String buyerUser=ans.getString("buyerUser");
 
                 //take the details on the vacation
-                String destenation = "SELECT destenation FROM vacationsForSale where vacation_id=\""+vacationWait+"\"" ;
+                String destenation = "SELECT destenation FROM vacationsForSale where vacationId=\""+vacationWait+"\"" ;
                 Statement stmt2  = conn.createStatement();
                 ResultSet deste    = stmt2.executeQuery(destenation);
                 String dest=deste.getString("destenation");
 
 
-                String airPortCampany = "SELECT airPortCampany FROM vacationsForSale where vacation_id=\""+vacationWait+"\"" ;
+                String airPortCampany = "SELECT airPortCampany FROM vacationsForSale where vacationId=\""+vacationWait+"\"" ;
                 Statement stmt3  = conn.createStatement();
                 ResultSet airP    = stmt3.executeQuery(airPortCampany);
                 String airPort=airP.getString("airPortCampany");
 
 
-                String dates = "SELECT dateOfVecation FROM vacationsForSale where vacation_id=\""+vacationWait+"\"" ;
+                String dates = "SELECT dateOfVecation FROM vacationsForSale where vacationId=\""+vacationWait+"\"" ;
                 Statement stmt4  = conn.createStatement();
                 ResultSet datese    = stmt4.executeQuery(dates);
                 String date=datese.getString("dateOfVecation");
@@ -270,21 +269,230 @@ public class Model {
 //                Statement stmt5  = conn.createStatement();
 //                ResultSet luggege    = stmt5.executeQuery(lugg);
 
-                String numOfTickets = "SELECT numOfTickets FROM vacationsForSale where vacation_id=\""+vacationWait+"\"" ;
+                String numOfTickets = "SELECT numOfTickets FROM vacationsForSale where vacationId=\""+vacationWait+"\"" ;
                 Statement stmt6  = conn.createStatement();
                 ResultSet numOftik    = stmt6.executeQuery(numOfTickets);
                 String numOftick=numOftik.getString("numOfTickets");
 
 
-                return "Hello!\n"+buyerUser+" is interesting in your "+numOftick+"tickets to "+dest+" on the dates: "+date+" from the "+airPort+" air port \nPleas approve or disapprove his request:";
+
+                return "Hello "+userName+"!!\nThe user "+buyerUser+" is interesting in your "+numOftick+" tickets to "+dest+" on the dates: "+date+" from the "+airPort+" air port \nPleas approve or disapprove the request:";
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        //if there is nothing on the inbox
+        return "";
+    }
+
+    public void approveRequest(String sellar){
+
+        String vecationFromWaiting = "SELECT vacationId FROM waitForSellar where sellarUser=\""+sellar+"\"" ;
+        try (Connection conn = this.connect();
+             Statement stmt1  = conn.createStatement();
+             ResultSet rs1    = stmt1.executeQuery(vecationFromWaiting)){
+
+        String vacationIDApproved=rs1.getString("vacationId");
+
+        //details on the buyer
+        String buyer = "SELECT buyerUser FROM waitForSellar where sellarUser=\""+sellar+"\"" ;
+        Statement stm  = conn.createStatement();
+        ResultSet ans    = stm.executeQuery(buyer);
+        String buyerUserApproved=ans.getString("buyerUser");
+
+
+            String sql = "INSERT INTO finalApprove (vacationId,buyerUser,sellarUser) VALUES(?,?,?)";
+            //update data on approved requests
+
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, vacationIDApproved);
+                pstmt.setString(2, buyerUserApproved);
+                pstmt.setString(3, sellar);
+                pstmt.executeUpdate();
+
+
+            //delete vacation fron waiting requests
+            String sql2 = "DELETE FROM waitForSellar where vacationId=?";
+            PreparedStatement pstmt1 = conn.prepareStatement(sql2);
+            pstmt1.setString(1, vacationIDApproved);
+            pstmt1.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+
+    public String checkMyBuyerInbox(String userName){
+
+        String sql = "SELECT buyerUser FROM finalApprove where buyerUser=\""+userName+"\"" ;
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            if(rs.getString("buyerUser").equals(userName) ) {
+
+
+                //there is vacation that approved for the user--we take the details from the table and inform the buyer at his inbox
+                String vacationApprove = "SELECT vacationId FROM finalApprove where buyerUser=\"" + userName + "\"";
+                Statement stmt1 = conn.createStatement();
+                ResultSet rs1 = stmt1.executeQuery(vacationApprove);
+                String Vapprove = rs1.getString("vacationId");
+
+
+                //details on the sellar
+                String sellar = "SELECT sellarUser FROM finalApprove where buyerUser=\""+userName+"\"" ;
+                Statement stm  = conn.createStatement();
+                ResultSet ans    = stm.executeQuery(sellar);
+                String sellarUser=ans.getString("sellarUser");
+
+
+                //take the details on the vacation
+                String destenation = "SELECT destenation FROM vacationsForSale where vacationId=\""+Vapprove+"\"" ;
+                Statement stmt2  = conn.createStatement();
+                ResultSet deste    = stmt2.executeQuery(destenation);
+                String dest=deste.getString("destenation");
+
+
+                String airPortCampany = "SELECT airPortCampany FROM vacationsForSale where vacationId=\""+Vapprove+"\"" ;
+                Statement stmt3  = conn.createStatement();
+                ResultSet airP    = stmt3.executeQuery(airPortCampany);
+                String airPort=airP.getString("airPortCampany");
+
+
+                String dates = "SELECT dateOfVecation FROM vacationsForSale where vacationId=\""+Vapprove+"\"" ;
+                Statement stmt4  = conn.createStatement();
+                ResultSet datese    = stmt4.executeQuery(dates);
+                String date=datese.getString("dateOfVecation");
+
+
+                String numOfTickets = "SELECT numOfTickets FROM vacationsForSale where vacationId=\""+Vapprove+"\"" ;
+                Statement stmt6  = conn.createStatement();
+                ResultSet numOftik    = stmt6.executeQuery(numOfTickets);
+                String numOftick=numOftik.getString("numOfTickets");
+
+                //delete vacation fron final approved
+                String sqll = "DELETE FROM finalApprove where vacationId=?";
+                PreparedStatement pstmt1 = conn.prepareStatement(sqll);
+                pstmt1.setString(1, Vapprove);
+                pstmt1.executeUpdate();
+
+
+                return "Hello "+userName+"!!\nThe sellar "+sellarUser+" approved your request for "+numOftick+" tickets to "+dest+" on the dates: "+date+" from the "+airPort+" air port \nWe wish you a great vacation";
+
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
-        return "";
+
+
+        String sql2 = "SELECT buyerUser FROM notApprove where buyerUser=\""+userName+"\"" ;
+        try (Connection conn1 = this.connect();
+             Statement stmt1 = conn1.createStatement();
+             ResultSet rs1 = stmt1.executeQuery(sql2)){;
+             //check non approved vacation
+
+            if(rs1.getString("buyerUser").equals(userName) ) {
+                //there is vacation that not approved for the user--we take the details from the table and inform the buyer at his inbox
+                String vacationNotApprove = "SELECT vacationId FROM notApprove where buyerUser=\"" + userName + "\"";
+                Statement s = conn1.createStatement();
+                ResultSet r = s.executeQuery(vacationNotApprove);
+                String VNapprove = r.getString("vacationId");
+
+
+                //details on the sellar
+                String sellar = "SELECT sellarUser FROM notApprove where buyerUser=\""+userName+"\"" ;
+                Statement stm  = conn1.createStatement();
+                ResultSet ans    = stm.executeQuery(sellar);
+                String sellarUser=ans.getString("sellarUser");
+
+
+                //take the details on the vacation
+                String destenation = "SELECT destenation FROM vacationsForSale where vacationId=\""+VNapprove+"\"" ;
+                Statement stmt2  = conn1.createStatement();
+                ResultSet deste    = stmt2.executeQuery(destenation);
+                String dest=deste.getString("destenation");
+
+
+                String airPortCampany = "SELECT airPortCampany FROM vacationsForSale where vacationId=\""+VNapprove+"\"" ;
+                Statement stmt3  = conn1.createStatement();
+                ResultSet airP    = stmt3.executeQuery(airPortCampany);
+                String airPort=airP.getString("airPortCampany");
+
+
+                String dates = "SELECT dateOfVecation FROM vacationsForSale where vacationId=\""+VNapprove+"\"" ;
+                Statement stmt4  = conn1.createStatement();
+                ResultSet datese    = stmt4.executeQuery(dates);
+                String date=datese.getString("dateOfVecation");
+
+
+                String numOfTickets = "SELECT numOfTickets FROM vacationsForSale where vacationId=\""+VNapprove+"\"" ;
+                Statement stmt6  = conn1.createStatement();
+                ResultSet numOftik    = stmt6.executeQuery(numOfTickets);
+                String numOftick=numOftik.getString("numOfTickets");
+
+                //delete vacation fron final approved
+                String del = "DELETE FROM notApprove where vacationId=?";
+                PreparedStatement pstmt1 = conn1.prepareStatement(del);
+                pstmt1.setString(1, VNapprove);
+                pstmt1.executeUpdate();
+
+
+                return "Hello "+userName+"!!\nThe sellar "+sellarUser+" did not approved your request for "+numOftick+" tickets to "+dest+" on the dates: "+date+" from the "+airPort+" air port \nKeep looking for the next opportunity";
+
+
+            }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+            //if there is nothing on the inbox
+            return "";
+
     }
 
+
+    public void notApproveRequest(String sellar){
+
+        String vecationFromWaiting = "SELECT vacationId FROM waitForSellar where sellarUser=\""+sellar+"\"" ;
+        try (Connection conn = this.connect();
+             Statement stmt1  = conn.createStatement();
+             ResultSet rs1    = stmt1.executeQuery(vecationFromWaiting)){
+
+            String vacationIDNotApproved=rs1.getString("vacationId");
+
+            //details on the buyer
+            String buyer = "SELECT buyerUser FROM waitForSellar where sellarUser=\""+sellar+"\"" ;
+            Statement stm  = conn.createStatement();
+            ResultSet ans    = stm.executeQuery(buyer);
+            String buyerUserNotApproved=ans.getString("buyerUser");
+
+
+            String sql = "INSERT INTO notApprove (vacationId,buyerUser,sellarUser) VALUES(?,?,?)";
+            //update data on unapproved requests
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, vacationIDNotApproved);
+            pstmt.setString(2, buyerUserNotApproved);
+            pstmt.setString(3, sellar);
+            pstmt.executeUpdate();
+
+            //delete vacation fron waiting requests
+            String sql2 = "DELETE FROM waitForSellar where vacationId=?";
+            PreparedStatement pstmt1 = conn.prepareStatement(sql2);
+            pstmt1.setString(1, vacationIDNotApproved);
+            pstmt1.executeUpdate();
+
+
+            //to change available field to true!!
+
+
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
 
 }
 
