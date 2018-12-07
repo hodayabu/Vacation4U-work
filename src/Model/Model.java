@@ -323,7 +323,6 @@ public class Model {
 
     }
 
-
     public String checkMyBuyerInbox(String userName){
 
         String sql = "SELECT buyerUser FROM finalApprove where buyerUser=\""+userName+"\"" ;
@@ -451,7 +450,6 @@ public class Model {
 
     }
 
-
     public void notApproveRequest(String sellar){
 
         String vecationFromWaiting = "SELECT vacationId FROM waitForSellar where sellarUser=\""+sellar+"\"" ;
@@ -493,6 +491,117 @@ public class Model {
         }
 
     }
+
+    public ArrayList<Vacation> serch_vacation_by_country(String country){
+        ArrayList<Vacation> ans=new ArrayList<>();
+        String sql = "SELECT * FROM vacationsForSale where destenation=\""+country+"\" AND available=1 ";
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+
+            while (rs.next()){
+                Vacation vacation=new Vacation(rs.getString("saller"),
+                                               rs.getString("airPortCampany"),
+                                               rs.getString("dateOfVecation"),
+                                               rs.getString("luggage"),
+                                               rs.getString("numOfTickets"),
+                                               rs.getString("destenation"),
+                                               rs.getBoolean("returnFligth"),
+                                               rs.getString("ticketType"),
+                                               rs.getBoolean("available"),
+                                                rs.getInt("vacationId"));
+                ans.add(vacation);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return ans;
+    }
+
+    public void  advertize_vacation(Vacation vacation)
+    {
+        String sql = "INSERT INTO vacationsForSale (vacationId,saller,airPortCampany,dateOfVecation,luggage, numOfTickets,destenation,returnFligth,ticketType,available) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, vacation.getVacation_id());
+            pstmt.setString(2, vacation.getUser_saller());
+            pstmt.setString(3, vacation.getAirPortCompany());
+            pstmt.setString(4, vacation.getDate());
+            pstmt.setString(5, vacation.getLagguge());
+            pstmt.setString(6, vacation.getNumOftickets());
+            pstmt.setString(7, vacation.getDestination());
+            pstmt.setBoolean(8, vacation.getReturnFlight());
+            pstmt.setString(9, vacation.getTicketType());
+            pstmt.setBoolean(10, vacation.getAvailble());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void buy_vacation(int vacationId,String user_buyer,String credit_number,String cvd,String experation,String cardType){
+
+           add_Record_of_payment_table(user_buyer, credit_number, cvd, experation, cardType);
+           update_availbility(vacationId,false);
+           add_recordIn_waitingForSallerVerefication(vacationId,user_buyer, get_the_saller(vacationId));
+    }
+
+    private void add_recordIn_waitingForSallerVerefication(int vacationId, String user_buyer, String user_saller) {
+        String sql = "INSERT INTO waitForSellar (vacationId,buyerUser,sellarUser) VALUES(?,?,?)";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, vacationId);
+            pstmt.setString(2, user_buyer);
+            pstmt.setString(3, user_saller);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private String get_the_saller(int vacationId) {
+        String saller="";
+        String sql = "SELECT * FROM vacationsForSale where vacationId=\""+vacationId+"\"" ;
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+             saller= rs.getString("saller");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+       return saller;
+    }
+
+    private void update_availbility(int vacationId, boolean b) {
+        String sql = "UPDATE vacationsForSale SET available = ?  "
+                + "WHERE vacationId=?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setBoolean(1,b);
+            pstmt.setInt(2,vacationId);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void add_Record_of_payment_table(String user_buyer,String credit_number,String cvd,String experation,String cardType){
+        String sql = "INSERT INTO PaymentData (userName,creditNumber,cvd,experation,cardType) VALUES(?,?,?,?,?)";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, user_buyer);
+            pstmt.setString(2, credit_number);
+            pstmt.setString(3, cvd);
+            pstmt.setString(4, experation);
+            pstmt.setString(5, cardType);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 
 }
 

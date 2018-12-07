@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 public class View extends Acontrol {
     public javafx.scene.control.Button btn_create;
 
+
+
     public void create()
     {
         try{
