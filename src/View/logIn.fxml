@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="View.logIn"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="319.0" prefWidth="313.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.logIn">
+   <children>
+      <TextField fx:id="f_UserName" layoutX="119.0" layoutY="120.0" prefHeight="24.0" prefWidth="160.0" />
+      <TextField fx:id="f_Password" layoutX="119.0" layoutY="182.0" prefHeight="15.0" prefWidth="160.0" />
+      <Label layoutX="18.0" layoutY="118.0" prefHeight="34.0" prefWidth="89.0" text="User Name:" />
+      <Label layoutX="18.0" layoutY="181.0" prefHeight="34.0" prefWidth="89.0" text="Password:" />
+      <Label layoutX="85.0" layoutY="30.0" prefHeight="55.0" prefWidth="130.0" text="Log In!">
+         <font>
+            <Font size="38.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn_LogIn" layoutX="84.0" layoutY="235.0" mnemonicParsing="false" onAction="#LogIn" prefHeight="31.0" prefWidth="146.0" text="Log In" />
+   </children>
 </AnchorPane>

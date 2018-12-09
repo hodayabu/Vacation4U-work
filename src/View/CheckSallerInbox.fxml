@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CheckSallerInbox">
+   <children>
+      <Button fx:id="btn_inbox" layoutX="160.0" layoutY="169.0" mnemonicParsing="false" onAction="#checkInbox" prefHeight="92.0" prefWidth="219.0" text="showTable" />
+   </children>
+</AnchorPane>
