@@ -11,7 +11,7 @@ public class logIn extends Acontrol {
 
 
     private MainScreen mainScreen;
-
+//
 
     public void setMainScreen(MainScreen mainScreen) {
         this.mainScreen = mainScreen;
