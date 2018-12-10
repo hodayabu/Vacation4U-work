@@ -19,6 +19,12 @@ public class Controller {
         return model.search_vacation_by_country(country);
     }
 
+    public boolean isConnect(){
+        if(model.getCurrentLogInUser().equals(""))
+            return false;
+        return true;
+    }
+
     public void Insert(String user, String pass, String birth, String first, String last, String city){
         model.Insert(user,pass,birth,first,last,city);
     }
@@ -61,7 +67,12 @@ public class Controller {
         model.setCurrentLogInUser("");
     }
 
-
+    public void Approve(String vactionId,String buyer){
+        model.approveRequest(Integer.valueOf(vactionId),buyer);
+    }
+    public void notApprove(String vactionId,String buyer){
+        model.notApproveRequest(Integer.valueOf(vactionId),buyer);
+    }
     public HashMap<Vacation,Boolean> InboxBuyer(){
         return model.checkMyBuyerInbox(model.getCurrentLogInUser());
     }
@@ -74,4 +85,8 @@ public class Controller {
         return model.checkMySellarInbox(model.getCurrentLogInUser());
     }
 
+
+    public ArrayList<Vacation> search_vacation_by_country(String country){
+        return model.search_vacation_by_country(country);
+    }
     }

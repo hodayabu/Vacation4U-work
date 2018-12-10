@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="519.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.purches">
+   <children>
+      <TextField fx:id="cvd" layoutX="300.0" layoutY="194.0" prefHeight="53.0" prefWidth="266.0" />
+      <TextField fx:id="cardnumber" layoutX="293.0" layoutY="54.0" prefHeight="53.0" prefWidth="266.0" />
+      <TextField fx:id="experation" layoutX="300.0" layoutY="312.0" prefHeight="53.0" prefWidth="266.0" />
+      <ChoiceBox fx:id="cardType" layoutX="320.0" layoutY="413.0" prefHeight="39.0" prefWidth="226.0" />
+      <Label layoutX="41.0" layoutY="413.0" prefHeight="39.0" prefWidth="120.0" text="card type " />
+      <Label layoutX="41.0" layoutY="319.0" prefHeight="39.0" prefWidth="102.0" text="experation" />
+      <Label layoutX="46.0" layoutY="184.0" prefHeight="39.0" prefWidth="92.0" text="cvd" />
+      <Label layoutX="46.0" layoutY="54.0" prefHeight="39.0" prefWidth="154.0" text="card number" />
+      <Button fx:id="btn_done" layoutX="75.0" layoutY="459.0" mnemonicParsing="false" onAction="#done" prefHeight="46.0" prefWidth="202.0" text="im done fuck me up " />
+   </children>
+</AnchorPane>

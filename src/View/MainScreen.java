@@ -1,15 +1,26 @@
 package View;
 
 import Model.Vacation;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainScreen extends Acontrol {
 
@@ -18,7 +29,6 @@ public class MainScreen extends Acontrol {
     public javafx.scene.control.Button btn_sellaerInbox;
     public javafx.scene.control.Button btn_BuyerInbox;
     public javafx.scene.control.Button btn_AdvertiseVacation;
-    public javafx.scene.control.Button btn_DeleteVacation;
     public javafx.scene.control.Button btn_SearchVacation;
     public javafx.scene.control.TextField f_country;
     //public ListView inboxSellar;
@@ -38,6 +48,171 @@ public class MainScreen extends Acontrol {
         else{
             ArrayList<Vacation> res=conection_layer.search(country);
 
+
+
+
+
+
+            TableView<VacationToShow> table = new TableView<VacationToShow>();
+            final ObservableList<VacationToShow> data = FXCollections.observableArrayList();
+           for(int i=0;i<res.size();i++){
+               Vacation v=res.get(i);
+               data.add(new VacationToShow(v.getUser_saller(),v.getAirPortCompany(),v.getDateDepar(),v.getDateArrive(),v.getLagguge(),v.getNumOftickets(),v.getDestinationCountry(),v.getDestinationCity(),v.getPrice(),v.getReturnFlight(),v.getTicketType(),v.getVacation_id()));
+           }
+            Stage stage=new Stage();
+            Scene scene = new Scene(new Group());
+            stage.setTitle("Table View Sample");
+            stage.setWidth(900);
+            stage.setHeight(500);
+
+            final Label label = new Label("search Vacation");
+            label.setFont(new Font("Arial", 20));
+
+            table.setEditable(true);
+
+            TableColumn e1 = new TableColumn("user_saller");
+            e1.setMinWidth(100);
+            e1.setCellValueFactory(
+                    new PropertyValueFactory<VacationToShow, String>("user_saller"));
+
+
+            TableColumn e2 = new TableColumn("AirportCompany");
+            e2.setMinWidth(100);
+            e2.setCellValueFactory(
+                    new PropertyValueFactory<VacationToShow, String>("AirportCompany"));
+
+            TableColumn e3 = new TableColumn("dateDepar");
+            e3.setMinWidth(100);
+            e3.setCellValueFactory(
+                    new PropertyValueFactory<VacationToShow, String>("dateDepar"));
+
+            TableColumn e4 = new TableColumn("dateArive");
+            e4.setMinWidth(100);
+            e4.setCellValueFactory(
+                    new PropertyValueFactory<VacationToShow, String>("dateArive"));
+
+            TableColumn e5 = new TableColumn("laggege");
+            e5.setMinWidth(100);
+            e5.setCellValueFactory(
+                    new PropertyValueFactory<VacationToShow, String>("laggege"));
+
+            TableColumn e6 = new TableColumn("num_of_tickets");
+            e6.setMinWidth(100);
+            e6.setCellValueFactory(
+                    new PropertyValueFactory<VacationToShow, String>("num_of_tickets"));
+
+            TableColumn e7 = new TableColumn("destcountry");
+            e7.setMinWidth(100);
+            e7.setCellValueFactory(
+                    new PropertyValueFactory<VacationToShow, String>("destcountry"));
+
+            TableColumn e8 = new TableColumn("destCity");
+            e8.setMinWidth(100);
+            e8.setCellValueFactory(
+                    new PropertyValueFactory<VacationToShow, String>("destCity"));
+
+            TableColumn e9 = new TableColumn("price");
+            e9.setMinWidth(100);
+            e9.setCellValueFactory(
+                    new PropertyValueFactory<VacationToShow, String>("price"));
+
+            TableColumn e10 = new TableColumn("returnFlight");
+            e10.setMinWidth(100);
+            e10.setCellValueFactory(
+                    new PropertyValueFactory<VacationToShow, String>("returnFlight"));
+            TableColumn e11 = new TableColumn("ticketType");
+            e11.setMinWidth(100);
+            e11.setCellValueFactory(
+                    new PropertyValueFactory<VacationToShow, String>("ticketType"));
+
+            TableColumn e12 = new TableColumn("vacationId");
+            e12.setMinWidth(100);
+            e12.setCellValueFactory(
+                    new PropertyValueFactory<VacationToShow, String>("vacationId"));
+
+
+
+
+
+
+            TableColumn actionCol = new TableColumn("parches");
+            actionCol.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
+
+
+            Callback<TableColumn<VacationToShow, String>, TableCell<VacationToShow, String>> cellFactory
+                    = //
+                    new Callback<TableColumn<VacationToShow, String>, TableCell<VacationToShow, String>>() {
+                        @Override
+                        public TableCell call(final TableColumn<VacationToShow, String> param) {
+                            final TableCell<VacationToShow, String> cell = new TableCell<VacationToShow, String>() {
+
+                                final Button btn = new Button("parches");
+
+                                @Override
+                                public void updateItem(String item, boolean empty) {
+                                    super.updateItem(item, empty);
+                                    if (empty) {
+                                        setGraphic(null);
+                                        setText(null);
+                                    } else {
+                                        btn.setOnAction(event -> {
+                                            VacationToShow vts = getTableView().getItems().get(getIndex());
+                                            openParches(vts.getVacationId());
+                                        });
+                                        setGraphic(btn);
+                                        setText(null);
+                                    }
+                                }
+                            };
+                            return cell;
+                        }
+                    };
+
+
+
+                       actionCol.setCellFactory(cellFactory);
+
+
+
+
+
+
+
+            table.setItems(data);
+            table.getColumns().addAll(e1, e2, e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,actionCol);
+
+            final VBox vbox = new VBox();
+            vbox.setSpacing(5);
+            vbox.setPadding(new Insets(10, 0, 0, 10));
+            vbox.getChildren().addAll(label, table);
+
+            ((Group) scene.getRoot()).getChildren().addAll(vbox);
+
+            stage.setScene(scene);
+            stage.show();
+
+
+        }
+    }
+
+    private void openParches(String vacationId) {
+        if(!(conection_layer.isConnect()))
+            showAlert("only register users can parches");
+        else {
+            Stage stage=new Stage();
+            stage.setTitle("parches");
+            FXMLLoader fxmlLoader=new FXMLLoader();
+            try {
+                Parent root=fxmlLoader.load(getClass().getResource("purches.fxml").openStream());
+                Scene scene=new Scene(root,400,320);
+                stage.setScene(scene);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                purches purches=fxmlLoader.getController();
+                purches.Init(vacationId);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -73,10 +248,6 @@ public class MainScreen extends Acontrol {
             e.printStackTrace();
         }
     }
-
-
-
-
 
     public void LogInOrOut(){
 

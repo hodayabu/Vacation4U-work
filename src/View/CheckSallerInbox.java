@@ -7,29 +7,31 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CheckSallerInbox extends Acontrol {
 
-    private TableView<Inbox> table = new TableView<Inbox>();
     public javafx.scene.control.Button btn_inbox;
 
-
-
-
     public void checkInbox() {
+        TableView<Inbox> table = new TableView<Inbox>();
+        final ObservableList<Inbox> data =FXCollections.observableArrayList();
+        HashMap<Vacation,String> ans=conection_layer.inboxSaller();
+        for(Map.Entry<Vacation,String> entry : ans.entrySet())
+            data.add(new Inbox(entry.getKey().getDestinationCity(),entry.getValue(),entry.getKey().getDateDepar(),entry.getKey().getDateArrive(),entry.getKey().getVacation_id()));
+
+
         Stage stage=new Stage();
         Scene scene = new Scene(new Group());
-        stage.setTitle("Inbox");
+        stage.setTitle("Table View Sample");
         stage.setWidth(900);
         stage.setHeight(500);
 
@@ -38,29 +40,110 @@ public class CheckSallerInbox extends Acontrol {
 
         table.setEditable(true);
 
-        TableColumn dest = new TableColumn("Destination City");
-        TableColumn buyer = new TableColumn("Buyer Name");
-        TableColumn deparDate = new TableColumn("Departure Date");
-        TableColumn arriveDate = new TableColumn("Arrival Date");
-        //TableColumn approve = new TableColumn("Approve");
-        //TableColumn disapprove = new TableColumn("Not Approve");
+        TableColumn firstNameCol = new TableColumn("dest");
+        firstNameCol.setMinWidth(100);
+        firstNameCol.setCellValueFactory(
+                new PropertyValueFactory<Inbox, String>("dest"));
 
-        table.getColumns().addAll(dest, buyer, deparDate,arriveDate/**,approve,disapprove**/);
+        TableColumn lastNameCol = new TableColumn("buyer");
+        lastNameCol.setMinWidth(100);
+        lastNameCol.setCellValueFactory(
+                new PropertyValueFactory<Inbox, String>("buyer"));
 
-        ObservableList<Inbox> data= FXCollections.observableArrayList();
-        HashMap<Vacation,String> ans=conection_layer.inboxSaller();
-        for(Map.Entry<Vacation,String> entry : ans.entrySet())
-            data.add(new Inbox(entry.getKey().getDestinationCity(),entry.getValue(),entry.getKey().getDateDepar(),entry.getKey().getDateArrive()/**,entry.getKey().getVacation_id()**/));
+        TableColumn emailCol = new TableColumn("depar");
+        emailCol.setMinWidth(100);
+        emailCol.setCellValueFactory(
+                new PropertyValueFactory<Inbox, String>("depar"));
 
-        dest.setCellValueFactory(new PropertyValueFactory<Inbox,String>("Destination City"));
-        buyer.setCellValueFactory(new PropertyValueFactory<Inbox,String>("Buyer Name"));
-        deparDate.setCellValueFactory(new PropertyValueFactory<Inbox,String>("Departure Date"));
-        arriveDate.setCellValueFactory(new PropertyValueFactory<Inbox,String>("Arrival Date"));
-        //approve.setCellValueFactory(new PropertyValueFactory<Inbox,String>("Approve"));
-        //disapprove.setCellValueFactory(new PropertyValueFactory<Inbox,String>("Not Approve"));
+        TableColumn ee = new TableColumn("arrive");
+        ee.setMinWidth(100);
+        ee.setCellValueFactory(
+                new PropertyValueFactory<Inbox, String>("arrive"));
+
+        TableColumn vid = new TableColumn("Vacation_Id");
+        vid.setMinWidth(100);
+        vid.setCellValueFactory(
+                new PropertyValueFactory<Inbox, String>("Vacation_Id"));
+
+
+        TableColumn actionCol = new TableColumn("Approve");
+        actionCol.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
+
+        TableColumn actionCol1 = new TableColumn("Not Approve");
+        actionCol.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
+
+        Callback<TableColumn<Inbox, String>, TableCell<Inbox, String>> cellFactory
+                = //
+                new Callback<TableColumn<Inbox, String>, TableCell<Inbox, String>>() {
+                    @Override
+                    public TableCell call(final TableColumn<Inbox, String> param) {
+                        final TableCell<Inbox, String> cell = new TableCell<Inbox, String>() {
+
+                            final Button btn = new Button("Approve");
+
+                            @Override
+                            public void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (empty) {
+                                    setGraphic(null);
+                                    setText(null);
+                                } else {
+                                    btn.setOnAction(event -> {
+                                        Inbox inbox = getTableView().getItems().get(getIndex());
+                                        conection_layer.Approve(inbox.Vacation_Id.get(),inbox.buyer.get());
+                                    });
+                                    setGraphic(btn);
+                                    setText(null);
+                                }
+                            }
+                        };
+                        return cell;
+                    }
+                };
+
+
+
+
+        Callback<TableColumn<Inbox, String>, TableCell<Inbox, String>> cellFactory1
+                = //
+                new Callback<TableColumn<Inbox, String>, TableCell<Inbox, String>>() {
+                    @Override
+                    public TableCell call(final TableColumn<Inbox, String> param) {
+                        final TableCell<Inbox, String> cell = new TableCell<Inbox, String>() {
+
+                            final Button btn = new Button("Not Approve");
+
+                            @Override
+                            public void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (empty) {
+                                    setGraphic(null);
+                                    setText(null);
+                                } else {
+                                    btn.setOnAction(event -> {
+                                        Inbox inbox = getTableView().getItems().get(getIndex());
+                                        conection_layer.notApprove(inbox.Vacation_Id.get(),inbox.buyer.get());
+                                    });
+                                    setGraphic(btn);
+                                    setText(null);
+                                }
+                            }
+                        };
+                        return cell;
+                    }
+                };
+
+        actionCol.setCellFactory(cellFactory);
+        actionCol1.setCellFactory(cellFactory1);
+
+
+
+
+
+
 
         table.setItems(data);
-
+        table.getColumns().addAll(firstNameCol, lastNameCol, emailCol,ee,vid,actionCol,actionCol1);
 
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
@@ -71,5 +154,7 @@ public class CheckSallerInbox extends Acontrol {
 
         stage.setScene(scene);
         stage.show();
+
+
     }
 }

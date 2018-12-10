@@ -204,45 +204,23 @@ public class Model {
             System.out.println(e.getMessage());
         }
     }
-    public void approveRequest(String sellar){
 
-        String vecationFromWaiting = "SELECT vacationId FROM waitForSellar where sellarUser=\""+sellar+"\"" ;
+    public void approveRequest(int vactionId,String buyer){
+        String sellar=getCurrentLogInUser();
+        //insert record into fanalAprove
+        String sql = "INSERT INTO FinalApprove (vacationId,buyerUser,sellarUser) VALUES(?,?,?)";
         try (Connection conn = this.connect();
-             Statement stmt1  = conn.createStatement();
-             ResultSet rs1    = stmt1.executeQuery(vecationFromWaiting)){
-
-            int vacationIDApproved=rs1.getInt("vacationId");
-
-            //details on the buyer
-            String buyer = "SELECT buyerUser FROM waitForSellar where sellarUser=\""+sellar+"\"" ;
-            Statement stm  = conn.createStatement();
-            ResultSet ans    = stm.executeQuery(buyer);
-            String buyerUserApproved=ans.getString("buyerUser");
-
-
-            String sql = "INSERT INTO finalApprove (vacationId,buyerUser,sellarUser) VALUES(?,?,?)";
-            //update data on approved requests
-
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, vacationIDApproved);
-            pstmt.setString(2, buyerUserApproved);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, vactionId);
+            pstmt.setString(2, buyer);
             pstmt.setString(3, sellar);
             pstmt.executeUpdate();
-
 
             //delete vacation fron waiting requests
             String sql2 = "DELETE FROM waitForSellar where vacationId=?";
             PreparedStatement pstmt1 = conn.prepareStatement(sql2);
-            pstmt1.setInt(1, vacationIDApproved);
+            pstmt1.setInt(1, vactionId);
             pstmt1.executeUpdate();
-
-
-//            //delete from vavtion table
-//            String sql3 = "DELETE FROM vacationsForSale where vacationId=?";
-//            PreparedStatement pstmt2 = conn.prepareStatement(sql3);
-//            pstmt2.setInt(1, vacationIDApproved);
-//            pstmt2.executeUpdate();
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -395,47 +373,36 @@ public class Model {
 
     }
 
-    public void notApproveRequest(String sellar){
-
-        String vecationFromWaiting = "SELECT vacationId FROM waitForSellar where sellarUser=\""+sellar+"\"" ;
+    public void notApproveRequest(int vacation_id,String buyer){
+        String sellar=getCurrentLogInUser();
+        //insert record into notApprove
+        String sql = "INSERT INTO notApprove (vacationId,buyerUser,sellarUser) VALUES(?,?,?)";
         try (Connection conn = this.connect();
-             Statement stmt1  = conn.createStatement();
-             ResultSet rs1    = stmt1.executeQuery(vecationFromWaiting)){
-
-            int vacationIDNotApproved=rs1.getInt("vacationId");
-
-            //details on the buyer
-            String buyer = "SELECT buyerUser FROM waitForSellar where sellarUser=\""+sellar+"\"" ;
-            Statement stm  = conn.createStatement();
-            ResultSet ans    = stm.executeQuery(buyer);
-            String buyerUserNotApproved=ans.getString("buyerUser");
-
-
-            String sql = "INSERT INTO notApprove (vacationId,buyerUser,sellarUser) VALUES(?,?,?)";
-            //update data on unapproved requests
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, vacationIDNotApproved);
-            pstmt.setString(2, buyerUserNotApproved);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, vacation_id);
+            pstmt.setString(2, buyer);
             pstmt.setString(3, sellar);
             pstmt.executeUpdate();
 
-            //delete vacation fron waiting requests
+
+        //delete from waitForSaller
             String sql2 = "DELETE FROM waitForSellar where vacationId=?";
             PreparedStatement pstmt1 = conn.prepareStatement(sql2);
-            pstmt1.setInt(1, vacationIDNotApproved);
+            pstmt1.setInt(1, vacation_id);
             pstmt1.executeUpdate();
-
-            update_availbility(vacationIDNotApproved,true);
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
+         //make the vacation avialble again
+        update_availbility(vacation_id,true);
+
 
     }
 
     public ArrayList<Vacation> search_vacation_by_country(String country){
         ArrayList<Vacation> ans=new ArrayList<>();
-        String sql = "SELECT * FROM vacationsForSale where destenation=\""+country+"\" AND available=1 ";
+        String sql = "SELECT * FROM vacationsForSale where destenationCountry=\""+country+"\" AND available=1 ";
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
