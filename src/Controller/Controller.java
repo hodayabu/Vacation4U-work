@@ -30,7 +30,7 @@ public class Controller {
     }
 
     public boolean exist(String userr) {
-       return model.exist(userr);
+        return model.exist(userr);
     }
 
     public String read(String userr) throws InterruptedException {
@@ -44,23 +44,23 @@ public class Controller {
         return true;
     }
 
-    public boolean buy_vacation(int vacationId,String credit_number,String cvd,String experation,String cardType) {
+    public boolean buy_vacation_with_credit(int vacationId,String credit_number,String cvd,String experation,String cardType) {
         if(model.getCurrentLogInUser().equals(""))
             return false;//user need to log in
-        model.buy_vacation(vacationId,model.getCurrentLogInUser(),credit_number,cvd,experation,cardType);
+        model.buy_vacation_with_credit(vacationId,model.getCurrentLogInUser(),credit_number,cvd,experation,cardType);
         return true;
     }
 
-        public void delete(String userr) {
+    public void delete(String userr) {
         model.delete(userr);
     }
 
     public boolean logIn (String userName,String password) {
-       return model.logIn(userName,password);
+        return model.logIn(userName,password);
     }
 
     public void update(String currentuser, String newuser ,String pass, String birth, String first, String last, String city) {
-    model.update(currentuser,newuser,pass,birth,first,last,city);
+        model.update(currentuser,newuser,pass,birth,first,last,city);
     }
 
     public void LogOut(){
@@ -89,4 +89,12 @@ public class Controller {
     public ArrayList<Vacation> search_vacation_by_country(String country){
         return model.search_vacation_by_country(country);
     }
+
+    public boolean buy_vacation_with_paypal(int vacationId,String user,String pass) {
+        if(model.getCurrentLogInUser().equals(""))
+            return false;//user need to log in
+        model.buy_vacation_with_paypal(vacationId,model.getCurrentLogInUser(),user,pass);
+        return true;
     }
+
+}

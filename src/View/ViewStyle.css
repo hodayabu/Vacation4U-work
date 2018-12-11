@@ -1,8 +1,9 @@
 .root{
-    -fx-background-color: FLORALWHITE 	 ;
+    -fx-background-color: FLORALWHITE   ;
     -fx-background-size: cover;
-    -fx-font-weight: bolder ;
+
 }
+
 
 Button {
 

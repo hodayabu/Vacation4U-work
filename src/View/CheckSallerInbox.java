@@ -32,7 +32,7 @@ public class CheckSallerInbox extends Acontrol {
         Stage stage=new Stage();
         Scene scene = new Scene(new Group());
         stage.setTitle("Table View Sample");
-        stage.setWidth(900);
+        stage.setWidth(720);
         stage.setHeight(500);
 
         final Label label = new Label("Inbox");

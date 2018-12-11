@@ -204,7 +204,7 @@ public class MainScreen extends Acontrol {
             FXMLLoader fxmlLoader=new FXMLLoader();
             try {
                 Parent root=fxmlLoader.load(getClass().getResource("purches.fxml").openStream());
-                Scene scene=new Scene(root,400,320);
+                Scene scene=new Scene(root,600,600);
                 scene.getStylesheets().add(getClass().getResource("ViewStyle.css").toExternalForm());
                 stage.setScene(scene);
                 stage.initModality(Modality.APPLICATION_MODAL);

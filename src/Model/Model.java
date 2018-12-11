@@ -1,20 +1,20 @@
 package Model;
 
-import java.sql.*;
-import java.util.*;
+        import java.sql.*;
+        import java.util.*;
 
 public class Model {
 
 
 
-        private String currentLogInUser="";
+    private String currentLogInUser="";
 
 
-        public void setCurrentLogInUser(String currentLogInUser) {
-            this.currentLogInUser = currentLogInUser;
-        }
+    public void setCurrentLogInUser(String currentLogInUser) {
+        this.currentLogInUser = currentLogInUser;
+    }
     public String getCurrentLogInUser() {
-            return currentLogInUser; }
+        return currentLogInUser; }
 
     private Connection connect() {
         // SQLite connection string
@@ -37,21 +37,21 @@ public class Model {
 
     public void Insert(String user, String pass, String birth, String first, String last, String city) {
 
-            String sql = "INSERT INTO users (user_name,password,BDay,first_name,last_name, city) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO users (user_name,password,BDay,first_name,last_name, city) VALUES(?,?,?,?,?,?)";
 
-            try (Connection conn = this.connect();
-                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.setString(1, user);
-                pstmt.setString(2, pass);
-                pstmt.setString(3, birth);
-                pstmt.setString(4, first);
-                pstmt.setString(5, last);
-                pstmt.setString(6, city);
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, user);
+            pstmt.setString(2, pass);
+            pstmt.setString(3, birth);
+            pstmt.setString(4, first);
+            pstmt.setString(5, last);
+            pstmt.setString(6, city);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
+    }
 
     public boolean exist(String userr) {
 
@@ -63,10 +63,10 @@ public class Model {
                 return true;
             }
 
-                //stmt.close();
-                //conn.close();
-                //rs.close();
-                //conn.close();
+            //stmt.close();
+            //conn.close();
+            //rs.close();
+            //conn.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -97,63 +97,63 @@ public class Model {
     }
 
     public void delete(String userr) {
-            String sql = "DELETE FROM users where user_name=?";
+        String sql = "DELETE FROM users where user_name=?";
 
-            try (Connection conn = this.connect();
-                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-                // set the corresponding param
-                pstmt.setString(1, userr);
-                // execute the delete statement
-                pstmt.executeUpdate();
+            // set the corresponding param
+            pstmt.setString(1, userr);
+            // execute the delete statement
+            pstmt.executeUpdate();
 
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
+    }
 
-        private List<String> help (String  currentuser,String newuser  ,String pass, String birth, String first, String last, String city)
-        {
-           List<String> ans=new ArrayList<>();
+    private List<String> help (String  currentuser,String newuser  ,String pass, String birth, String first, String last, String city)
+    {
+        List<String> ans=new ArrayList<>();
 
-            String sql = "SELECT * FROM users where user_name=\""+currentuser+"\"" ;
-            try (Connection conn = this.connect();
-                 Statement stmt  = conn.createStatement();
-                 ResultSet rs    = stmt.executeQuery(sql)){
-                 if(newuser.equals(""))
-                     ans.add(0,rs.getString("user_name"));
-                 else
-                     ans.add(newuser);
-                if(pass.equals(""))
-                    ans.add(1,rs.getString("password"));
-                else
-                    ans.add(pass);
-                if(birth.equals(""))
-                    ans.add(2,rs.getString("BDay"));
-                else
-                    ans.add(pass);
-                if(first.equals(""))
-                    ans.add(3,rs.getString("first_name"));
-                else
-                    ans.add(first);
-                if(last.equals(""))
-                    ans.add(4,rs.getString("last_name"));
-                else
-                    ans.add(last);
-                if(city.equals(""))
-                    ans.add(5,rs.getString("city"));
-                else
-                    ans.add(city);
+        String sql = "SELECT * FROM users where user_name=\""+currentuser+"\"" ;
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            if(newuser.equals(""))
+                ans.add(0,rs.getString("user_name"));
+            else
+                ans.add(newuser);
+            if(pass.equals(""))
+                ans.add(1,rs.getString("password"));
+            else
+                ans.add(pass);
+            if(birth.equals(""))
+                ans.add(2,rs.getString("BDay"));
+            else
+                ans.add(pass);
+            if(first.equals(""))
+                ans.add(3,rs.getString("first_name"));
+            else
+                ans.add(first);
+            if(last.equals(""))
+                ans.add(4,rs.getString("last_name"));
+            else
+                ans.add(last);
+            if(city.equals(""))
+                ans.add(5,rs.getString("city"));
+            else
+                ans.add(city);
 
-                //stmt.close();
-                //conn.close();
-                //rs.close();
-                //conn.close();
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
-            return ans;
+            //stmt.close();
+            //conn.close();
+            //rs.close();
+            //conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
+        return ans;
+    }
 
     public void update(String currentuser, String newuser ,String pass, String birth, String first, String last, String city) {
 
@@ -188,7 +188,7 @@ public class Model {
                 pstmt.setString(6, city);
             */
             // update
-           List<String> ans= help(currentuser,newuser  ,pass, birth, first, last, city);
+            List<String> ans= help(currentuser,newuser  ,pass, birth, first, last, city);
             pstmt.setString(1,ans.get(0));
             pstmt.setString(2,ans.get(1));
             pstmt.setString(3,ans.get(2));
@@ -385,7 +385,7 @@ public class Model {
             pstmt.executeUpdate();
 
 
-        //delete from waitForSaller
+            //delete from waitForSaller
             String sql2 = "DELETE FROM waitForSellar where vacationId=?";
             PreparedStatement pstmt1 = conn.prepareStatement(sql2);
             pstmt1.setInt(1, vacation_id);
@@ -394,7 +394,7 @@ public class Model {
             System.out.println(e.getMessage());
         }
 
-         //make the vacation avialble again
+        //make the vacation avialble again
         update_availbility(vacation_id,true);
 
 
@@ -455,11 +455,11 @@ public class Model {
         }
     }
 
-    public void buy_vacation(int vacationId,String user_buyer,String credit_number,String cvd,String experation,String cardType){
+    public void buy_vacation_with_credit(int vacationId,String user_buyer,String credit_number,String cvd,String experation,String cardType){
 
-           add_Record_of_payment_table(user_buyer, credit_number, cvd, experation, cardType);
-           update_availbility(vacationId,false);
-           add_recordIn_waitingForSallerVerefication(vacationId,user_buyer, get_the_saller(vacationId));
+        add_Record_of_payment_table_credit(user_buyer, credit_number, cvd, experation, cardType);
+        update_availbility(vacationId,false);
+        add_recordIn_waitingForSallerVerefication(vacationId,user_buyer, get_the_saller(vacationId));
     }
 
     private void add_recordIn_waitingForSallerVerefication(int vacationId, String user_buyer, String user_saller) {
@@ -481,11 +481,11 @@ public class Model {
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
-             saller= rs.getString("saller");
+            saller= rs.getString("saller");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-       return saller;
+        return saller;
     }
 
     private void update_availbility(int vacationId, boolean b) {
@@ -502,7 +502,7 @@ public class Model {
         }
     }
 
-    private void add_Record_of_payment_table(String user_buyer,String credit_number,String cvd,String experation,String cardType){
+    private void add_Record_of_payment_table_credit(String user_buyer, String credit_number, String cvd, String experation, String cardType){
         String sql = "INSERT INTO PaymentData (userName,creditNumber,cvd,experation,cardType) VALUES(?,?,?,?,?)";
 
         try (Connection conn = this.connect();
@@ -519,7 +519,23 @@ public class Model {
     }
 
 
+    public void buy_vacation_with_paypal(int vacationId, String buyer, String userpaypal, String pass) {
+        add_Record_of_payment_table_paypal(buyer,userpaypal,pass);
+        update_availbility(vacationId,false);
+        add_recordIn_waitingForSallerVerefication(vacationId,buyer, get_the_saller(vacationId));
+    }
+
+    private void add_Record_of_payment_table_paypal(String buyer, String userpaypal, String pass) {
+        String sql = "INSERT INTO paypal (userpaypal,password,buyer) VALUES(?,?,?)";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, userpaypal);
+            pstmt.setString(2, pass);
+            pstmt.setString(3, buyer);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
-
-
-
