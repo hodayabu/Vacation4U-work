@@ -11,37 +11,74 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="542.0" prefWidth="865.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScreen">
+<AnchorPane prefHeight="641.0" prefWidth="804.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScreen">
    <children>
-      <MenuBar prefHeight="32.0" prefWidth="182.0">
+      <ImageView fitHeight="641.0" fitWidth="817.0" layoutX="-2.0" opacity="0.57" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="/bb.png" />
+         </image>
+      </ImageView>
+      <MenuBar prefHeight="39.0" prefWidth="100.0">
         <menus>
-          <Menu mnemonicParsing="false" text="About Us">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#Help" text="Help" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <ImageView fitHeight="237.0" fitWidth="215.0" layoutX="240.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="/logoNew.png" />
-         </image></ImageView>
-      <Button fx:id="btn_LogIn" layoutX="739.0" layoutY="14.0" mnemonicParsing="false" onAction="#LogInOrOut" prefHeight="32.0" prefWidth="112.0" text="Log In" />
-      <Button fx:id="btn_Create" layoutX="739.0" layoutY="57.0" mnemonicParsing="false" onAction="#create" prefHeight="32.0" prefWidth="112.0" text="Create User" />
-      <TextField fx:id="f_country" layoutX="463.0" layoutY="308.0" prefHeight="44.0" prefWidth="215.0" />
-      <Button fx:id="btn_sellaerInbox" layoutX="14.0" layoutY="104.0" mnemonicParsing="false" onAction="#CheckSallerInbox" prefHeight="44.0" prefWidth="112.0" text="Sellar Inbox" />
-      <Label layoutX="67.0" layoutY="305.0" prefHeight="50.0" prefWidth="367.0" text="Choose country destenation:">
+      <Button fx:id="btn_LogIn" layoutX="653.0" layoutY="14.0" mnemonicParsing="false" onAction="#LogInOrOut" prefHeight="39.0" prefWidth="148.0" text="Log In">
          <font>
-            <Font size="28.0" />
+            <Font name="Comic Sans MS Bold Italic" size="20.0" />
+         </font></Button>
+      <Button fx:id="btn_Create" layoutX="653.0" layoutY="66.0" mnemonicParsing="false" onAction="#create" prefHeight="39.0" prefWidth="148.0" text="Create User">
+         <font>
+            <Font name="Comic Sans MS Bold Italic" size="20.0" />
+         </font></Button>
+      <TextField fx:id="f_country" layoutX="433.0" layoutY="345.0" prefHeight="44.0" prefWidth="215.0" />
+      <Button fx:id="btn_sellaerInbox" layoutX="15.0" layoutY="172.0" mnemonicParsing="false" onAction="#CheckSallerInbox" prefHeight="66.0" prefWidth="120.0">
+         <graphic>
+            <ImageView fitHeight="77.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/envalop.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Label layoutX="16.0" layoutY="340.0" prefHeight="50.0" prefWidth="396.0" text="Choose your vacation country:" wrapText="true">
+         <font>
+            <Font name="Comic Sans MS Bold Italic" size="27.0" />
          </font>
       </Label>
-      <Button fx:id="btn_SearchVacation" layoutX="711.0" layoutY="305.0" mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="100.0" text="Search" />
-      <Button fx:id="btn_AdvertiseVacation" layoutX="334.0" layoutY="415.0" mnemonicParsing="false" onAction="#advertise" prefHeight="66.0" prefWidth="256.0" text="Advertise Vacation" />
-      <Button fx:id="btn_BuyerInbox" layoutX="17.0" layoutY="179.0" mnemonicParsing="false" onAction="#CheckBuyerInbox" prefHeight="44.0" prefWidth="100.0" text="Buyer Inbox" />
+      <Button fx:id="btn_SearchVacation" layoutX="681.0" layoutY="337.0" mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="100.0" text="Search">
+         <font>
+            <Font name="Comic Sans MS Bold Italic" size="20.0" />
+         </font></Button>
+      <Button fx:id="btn_BuyerInbox" layoutX="16.0" layoutY="71.0" mnemonicParsing="false" onAction="#CheckBuyerInbox" prefHeight="83.0" prefWidth="120.0">
+         <graphic>
+            <ImageView fitHeight="65.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/envalop.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="btn_AdvertiseVacation" layoutX="229.0" layoutY="499.0" mnemonicParsing="false" onAction="#advertise" prefHeight="66.0" prefWidth="310.0" text="Publish your vacations!">
+         <font>
+            <Font name="Comic Sans MS Bold Italic" size="24.0" />
+         </font></Button>
+      <Label layoutX="17.0" layoutY="85.0" prefHeight="50.0" prefWidth="139.0" text="Buyer Index">
+         <font>
+            <Font name="Comic Sans MS Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="193.0" prefHeight="44.0" prefWidth="139.0" text="Seller Inbox">
+         <font>
+            <Font name="Comic Sans MS Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="206.0" layoutY="119.0" prefHeight="50.0" prefWidth="396.0" text="Welcome!" wrapText="true">
+         <font>
+            <Font name="Comic Sans MS Bold Italic" size="79.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

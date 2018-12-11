@@ -6,11 +6,22 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="542.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.adverties">
    <children>
+      <ImageView fitHeight="598.0" fitWidth="737.0" opacity="0.31" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="/beach_1.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="137.0" fitWidth="111.0" layoutX="14.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="/1.png" />
+         </image></ImageView>
       <DatePicker fx:id="d_departure" layoutX="270.0" layoutY="270.0" />
       <Button fx:id="btn_AddVavation" layoutX="214.0" layoutY="468.0" mnemonicParsing="false" onAction="#Add" prefHeight="51.0" prefWidth="152.0" text="Add!" />
       <CheckBox fx:id="c_returnTicket" layoutX="328.0" layoutY="420.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="24.0" />
@@ -27,9 +38,9 @@
       <TextField fx:id="f_NumOfTickets" layoutX="270.0" layoutY="234.0" />
       <Label layoutX="49.0" layoutY="382.0" prefHeight="40.0" prefWidth="152.0" text="Ticket type" />
       <Label layoutX="49.0" layoutY="412.0" prefHeight="40.0" prefWidth="152.0" text="Return ticket" />
-      <Label layoutX="149.0" layoutY="34.0" prefHeight="40.0" prefWidth="282.0" text="Add your vacation details:">
+      <Label layoutX="59.0" layoutY="34.0" prefHeight="55.0" prefWidth="455.0" text="Add your vacation details:">
          <font>
-            <Font size="24.0" />
+            <Font name="Bernard MT Condensed" size="44.0" />
          </font>
       </Label>
       <Label layoutX="50.0" layoutY="266.0" prefHeight="40.0" prefWidth="152.0" text="Departure date" />

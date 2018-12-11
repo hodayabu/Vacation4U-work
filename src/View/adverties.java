@@ -26,7 +26,7 @@ public class adverties extends Acontrol {
     }
 
     public void Add(){
-       if(d_departure.getValue().equals("")||d_arrival.getValue().equals("")||f_DestanationCity.getText().equals("")||f_DestanationContry.getText().equals("")|| f_Luggege.getText().equals("")||f_Price.getText().equals("")||f_NumOfTickets.getText().equals("")||f_FligthCompany.getText().equals("")||c_ticketType.getValue().equals("")) {
+       if(checkNull()||d_departure.getValue().toString().equals("")||d_arrival.getValue().toString().equals("")||f_DestanationCity.getText().equals("")||f_DestanationContry.getText().equals("")|| f_Luggege.getText().equals("")||f_Price.getText().equals("")||f_NumOfTickets.getText().equals("")||f_FligthCompany.getText().equals("")||c_ticketType.getValue().toString().equals("")) {
            showAlert("please fill all the fileds");
        }
        else{
@@ -38,8 +38,12 @@ public class adverties extends Acontrol {
 
     }
 
-
-
+    private boolean checkNull() {
+        if(d_departure.getValue()==null||d_arrival.getValue()==null||f_DestanationCity.getText()==null||f_DestanationContry.getText()==null|| f_Luggege.getText()==null||f_Price.getText()==null||f_NumOfTickets.getText()==null||f_FligthCompany.getText()==null||c_ticketType.getValue()==null) {
+            return true;
+        }
+        return false;
+        }
 
 
 }

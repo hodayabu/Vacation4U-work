@@ -40,22 +40,22 @@ public class CheckSallerInbox extends Acontrol {
 
         table.setEditable(true);
 
-        TableColumn firstNameCol = new TableColumn("dest");
+        TableColumn firstNameCol = new TableColumn("Destination");
         firstNameCol.setMinWidth(100);
         firstNameCol.setCellValueFactory(
                 new PropertyValueFactory<Inbox, String>("dest"));
 
-        TableColumn lastNameCol = new TableColumn("buyer");
+        TableColumn lastNameCol = new TableColumn("Buyer Name");
         lastNameCol.setMinWidth(100);
         lastNameCol.setCellValueFactory(
                 new PropertyValueFactory<Inbox, String>("buyer"));
 
-        TableColumn emailCol = new TableColumn("depar");
+        TableColumn emailCol = new TableColumn("Departure Date");
         emailCol.setMinWidth(100);
         emailCol.setCellValueFactory(
                 new PropertyValueFactory<Inbox, String>("depar"));
 
-        TableColumn ee = new TableColumn("arrive");
+        TableColumn ee = new TableColumn("Arrival Date");
         ee.setMinWidth(100);
         ee.setCellValueFactory(
                 new PropertyValueFactory<Inbox, String>("arrive"));
@@ -91,6 +91,7 @@ public class CheckSallerInbox extends Acontrol {
                                     btn.setOnAction(event -> {
                                         Inbox inbox = getTableView().getItems().get(getIndex());
                                         conection_layer.Approve(inbox.Vacation_Id.get(),inbox.buyer.get());
+                                        showAlert("Vacation approved to sell");
                                     });
                                     setGraphic(btn);
                                     setText(null);
@@ -123,6 +124,7 @@ public class CheckSallerInbox extends Acontrol {
                                     btn.setOnAction(event -> {
                                         Inbox inbox = getTableView().getItems().get(getIndex());
                                         conection_layer.notApprove(inbox.Vacation_Id.get(),inbox.buyer.get());
+                                        showAlert("Vacation disapproved to sell");
                                     });
                                     setGraphic(btn);
                                     setText(null);

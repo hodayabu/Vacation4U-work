@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.BoxBlur?>
@@ -11,61 +12,61 @@
 
 <AnchorPane prefHeight="637.0" prefWidth="860.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.create">
    <children>
-      <ImageView fitHeight="670.0" fitWidth="860.0" opacity="0.26" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="842.0" fitWidth="1187.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="/sky.jpg" />
+            <Image url="/backgroundpng.png" />
          </image>
          <effect>
             <BoxBlur />
          </effect>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="464.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="19.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="/v.png" />
+            <Image url="/1.png" />
          </image>
       </ImageView>
-      <Label layoutX="219.0" layoutY="28.0" prefHeight="49.0" prefWidth="458.0" text="Create your user " textAlignment="CENTER">
+      <Label layoutX="201.0" layoutY="35.0" prefHeight="49.0" prefWidth="458.0" text="Create your user " textAlignment="CENTER">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="49.0" />
          </font>
       </Label>
-      <TextField fx:id="u_name" layoutX="435.0" layoutY="117.0" />
-      <TextField fx:id="password" layoutX="435.0" layoutY="178.0" />
-      <TextField fx:id="BDay" layoutX="435.0" layoutY="238.0" />
-      <TextField fx:id="f_name" layoutX="435.0" layoutY="301.0" />
-      <TextField fx:id="l_name" layoutX="435.0" layoutY="363.0" />
-      <TextField fx:id="city" layoutX="435.0" layoutY="425.0" />
-      <Label layoutX="223.0" layoutY="108.0" prefHeight="49.0" prefWidth="136.0" text="User name:" textAlignment="CENTER">
+      <TextField fx:id="u_name" layoutX="188.0" layoutY="178.0" />
+      <TextField fx:id="password" layoutX="186.0" layoutY="263.0" />
+      <TextField fx:id="f_name" layoutX="622.0" layoutY="178.0" />
+      <TextField fx:id="l_name" layoutX="622.0" layoutY="263.0" />
+      <TextField fx:id="city" layoutX="627.0" layoutY="341.0" />
+      <Label layoutX="19.0" layoutY="173.0" prefHeight="49.0" prefWidth="136.0" text="User name:" textAlignment="CENTER">
          <font>
             <Font name="Comic Sans MS Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="227.0" layoutY="356.0" prefHeight="49.0" prefWidth="136.0" text="Last name:">
+      <Label layoutX="448.0" layoutY="258.0" prefHeight="49.0" prefWidth="136.0" text="Last name:">
          <font>
             <Font name="Comic Sans MS Bold" size="24.0" />
          </font></Label>
-      <Label layoutX="228.0" layoutY="416.0" prefHeight="49.0" prefWidth="126.0" text="City:">
+      <Label layoutX="521.0" layoutY="336.0" prefHeight="49.0" prefWidth="126.0" text="City:">
          <font>
             <Font name="Comic Sans MS Bold" size="24.0" />
          </font></Label>
-      <Button fx:id="btn_ImDone" layoutX="346.0" layoutY="496.0" mnemonicParsing="false" onAction="#Insert" prefHeight="64.0" prefWidth="148.0" text="I'm done!">
+      <Button fx:id="btn_ImDone" layoutX="368.0" layoutY="416.0" mnemonicParsing="false" onAction="#Insert" prefHeight="64.0" prefWidth="148.0" text="I'm done!">
          <font>
             <Font name="Comic Sans MS Bold" size="24.0" />
          </font></Button>
-      <Label layoutX="224.0" layoutY="169.0" prefHeight="49.0" prefWidth="136.0" text="Password:" textAlignment="CENTER">
+      <Label layoutX="19.0" layoutY="258.0" prefHeight="49.0" prefWidth="136.0" text="Password:" textAlignment="CENTER">
          <font>
             <Font name="Comic Sans MS Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="226.0" layoutY="229.0" prefHeight="49.0" prefWidth="186.0" text="Date of birth:" textAlignment="CENTER">
+      <Label layoutX="6.0" layoutY="331.0" prefHeight="49.0" prefWidth="186.0" text="Date of birth:" textAlignment="CENTER">
          <font>
             <Font name="Comic Sans MS Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="226.0" layoutY="292.0" prefHeight="49.0" prefWidth="136.0" text="First name:" textAlignment="CENTER">
+      <Label layoutX="448.0" layoutY="173.0" prefHeight="49.0" prefWidth="136.0" text="First name:" textAlignment="CENTER">
          <font>
             <Font name="Comic Sans MS Bold" size="24.0" />
          </font>
       </Label>
+      <DatePicker fx:id="BDay" layoutX="188.0" layoutY="336.0" />
    </children>
 </AnchorPane>

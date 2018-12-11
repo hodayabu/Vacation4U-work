@@ -19,7 +19,9 @@ public class Main extends Application {
         Parent root = fxm.load(getClass().getResource("MainScreen.fxml").openStream());
         //Parent root = fxm.load(getClass().getResource("View.fxml").openStream());
         primaryStage.setTitle("Vacation 4 U");
-        primaryStage.setScene(new Scene(root, 900, 600));
+        Scene scene = new Scene(root, 803, 640);
+        scene.getStylesheets().add(getClass().getResource("ViewStyle.css").toExternalForm());
+        primaryStage.setScene(scene);
         MainScreen Main_control=fxm.getController();
         Main_control.setController(controller);
         Main_control.initializ();
